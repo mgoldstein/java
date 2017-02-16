@@ -1,0 +1,100 @@
+/*
+ * Homework #3
+ * Stock.java
+ * Course: CS112 Java Programming
+ * Instructor: Bhattacharyya
+ * Name: Marc Goldstein
+ * Student ID: 800-28-3313
+ */
+
+import javax.swing.JOptionPane; // import class JOptionPane
+
+public class Stock
+{
+	private String symbol; 
+	private String name; 
+	private double previousClosingPrice;
+	private double currentPrice;
+	
+	// constructor initializes stock object with symbol and name
+	public Stock( String stockSymbol, String stockName )
+	{
+		symbol = stockSymbol;
+		name = stockName;
+	} // end constructor
+	
+	// accessor method for symbol
+	public String getStockSymbol()
+	{
+		return symbol;
+	} // end getStockSymbol
+	
+	// accessor method for name
+	public String getStockName()
+	{
+		return name;
+	} // end getStockName
+	
+	// accessor method for previousClosingPrice
+	public double getPreviousClosingPrice()
+	{
+		return previousClosingPrice;
+	} // end getPreviousClosingPrice
+	
+	// accessor method for currentPrice
+	public double getCurrentPrice()
+	{
+		return currentPrice;
+	} // end getCurrentPrice
+	
+	// mutator method for currentPrice
+	public void setCurrentPrice(double stockPrice)
+	{
+		currentPrice = stockPrice;
+	} // end setCurrentPrice
+	
+	// mutator method for previousClosingPrice
+	public void setClosingPrice(double stockClose)
+	{
+		previousClosingPrice = stockClose;
+	} // end setCurrentPrice
+
+	private double round(double val, int places) {
+		long factor = (long)Math.pow(10,places);
+
+		// Shift the decimal the correct number of places to the right.
+		val = val * factor;
+
+		// Round to the nearest integer.
+		long tmp = Math.round(val);
+
+		// Shift the decimal the correct number of places back to the left.
+		return (double)tmp / factor;
+	}
+
+	public void ChangePercent() 
+	{
+		// calculate percentage change
+		double percentChange = 0.0;
+		if (currentPrice != previousClosingPrice) {
+			percentChange = 100 * ((previousClosingPrice - currentPrice)/currentPrice);
+			percentChange = round(percentChange, 2);
+		}
+		
+		JOptionPane.showMessageDialog(null, "Percentage change from previous closing price:\n" + percentChange + "%",
+	"Stock.java", JOptionPane.INFORMATION_MESSAGE);
+	} // end ChangePercent
+
+/*
+From the main method, instantiate an object of type Stock for "Google" with symbol "GOOG". Initialize previousClosingPrice as 510 and currentPrice as 524. Now call the ChangePercent() to print the percentage change on the command line or on the JOptionPane.
+*/
+
+	public static void main(String[] args)
+	{
+		Stock googleShare = new Stock( "Google", "GOOG" );
+		googleShare.setClosingPrice(510);
+		googleShare.setCurrentPrice(524);
+		googleShare.ChangePercent();
+	} // end main method
+
+} // end class Stock

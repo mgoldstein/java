@@ -1,0 +1,87 @@
+/*
+ * Homework #3
+ * Stock.java
+ * Course: CS112 Java Programming
+ * Instructor: Bhattacharyya
+ * Name: Marc Goldstein
+ * Student ID: 800-28-3313
+ */
+
+public class Stock
+{
+	private String symbol; 
+	private String name; 
+	private double previousClosingPrice;
+	private double currentPrice;
+	
+	// constructor initializes stock object with symbol and name
+	public Stock( String stockName, String stockSymbol )
+	{
+		name = stockName;
+		symbol = stockSymbol;
+	} // end constructor
+	
+	// accessor method for symbol
+	public String getStockSymbol()
+	{
+		return symbol;
+	} // end getStockSymbol
+	
+	// accessor method for name
+	public String getStockName()
+	{
+		return name;
+	} // end getStockName
+	
+	// accessor method for previousClosingPrice
+	public double getPreviousClosingPrice()
+	{
+		return previousClosingPrice;
+	} // end getPreviousClosingPrice
+	
+	// accessor method for currentPrice
+	public double getCurrentPrice()
+	{
+		return currentPrice;
+	} // end getCurrentPrice
+	
+	// mutator method for currentPrice
+	public void setCurrentPrice(double stockPrice)
+	{
+		currentPrice = stockPrice;
+	} // end setCurrentPrice
+	
+	// mutator method for previousClosingPrice
+	public void setClosingPrice(double stockClose)
+	{
+		previousClosingPrice = stockClose;
+	} // end setCurrentPrice
+
+/*
+	private double round(double val, int places) {
+		long factor = (long)Math.pow(10,places);
+
+		// Shift the decimal the correct number of places to the right.
+		val = val * factor;
+
+		// Round to the nearest integer.
+		long tmp = Math.round(val);
+
+		// Shift the decimal the correct number of places back to the left.
+		return (double)tmp / factor;
+	}
+*/
+
+	public void ChangePercent() 
+	{
+		// calculate percentage change
+		double percentChange = 0.0;
+		if (currentPrice != previousClosingPrice) {
+			percentChange = 100 * ((currentPrice - previousClosingPrice)/currentPrice);
+			// percentChange = round(percentChange, 2);
+		}
+		
+		System.out.printf("Percentage change from previous closing price: %.2f%s\n", percentChange, "%");
+	} // end ChangePercent
+
+} // end class Stock
